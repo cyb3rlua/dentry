@@ -48,3 +48,23 @@ file:close()
 -- and it will then automatically format, user will not need to call dentry:format()
 -- but for now, simply writing manually works just fine.
 ```
+
+The above code guarantees the keys are output in a clean, logical order, resulting in this perfectly formatted string:
+
+
+```ini
+[Desktop Entry]
+Name=Godot Engine
+Type=Application
+GenericName=Game Engine
+Comment=Multi-platform 2D and 3D game engine
+Icon=godot
+Exec=/home/user/Applications/Godot/godot.x86_64
+Terminal=false
+Categories=Development;Game;
+```
+
+# Supported Keys
+
+lua-dentry strictly orders and supports the standard XDG Desktop Entry keys, including:
+Name, Version, Type, GenericName, NoDisplay, Comment, Icon, Hidden, OnlyShowIn, NotShowIn, DBusActivatable, TryExec, Exec, Path, Terminal, Actions, MimeType, Categories, Implements, Keywords, StartupNotify, StartupWMClass, Url, PrefersNonDefaultGPU, SingleMainWindow.
