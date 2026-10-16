@@ -67,4 +67,4 @@ Categories=Development;Game;
 # Supported Keys
 
 lua-dentry strictly orders and supports the standard XDG Desktop Entry keys, including:
-'Name', 'Version', 'Type', 'GenericName', 'NoDisplay', 'Comment', 'Icon', 'Hidden', 'OnlyShowIn', 'NotShowIn', 'DBusActivatable', 'TryExec', 'Exec', 'Path', 'Terminal', 'Actions', 'MimeType', 'Categories', 'Implements', 'Keywords', 'StartupNotify', 'StartupWMClass', 'Url', 'PrefersNonDefaultGPU', SingleMainWindow.
+`Name`, `Version`, `Type`, `GenericName`, `NoDisplay`, `Comment`, `Icon`, `Hidden`, `OnlyShowIn`, `NotShowIn`, `DBusActivatable`, `TryExec`, `Exec`, `Path`, `Terminal`, `Actions`, `MimeType`, `Categories`, `Implements`, `Keywords`, `StartupNotify`, `StartupWMClass`, `Url`, `PrefersNonDefaultGPU`, SingleMainWindow.
