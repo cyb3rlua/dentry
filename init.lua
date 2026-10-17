@@ -57,6 +57,10 @@ local keys = {
 local mtable = {}
 mtable.__index = DesktopMaker
 mtable.__metatable = "CALLL SECURITY!"
+local PATHS = {
+	USER = os.getenv "HOME" .. "/.local/share/applications",
+	SYSTEM = "/usr/share/applications",
+}
 
 mtable.__pairs = function(tbl)
 	local index = 0
@@ -74,8 +78,26 @@ end
 ---@diagnostic disable-next-line: return-type-mismatch
 function DesktopMaker.new(contents) return setmetatable(contents, mtable) end
 
--- TODO:
-function DesktopMaker:write() end
+---@param dir string | "USER" | "SYSTEM" Destination Directory, Defaults to USER ($HOME/.local/share/applications)
+---@param name string | nil If not provided, will use ([self].Name):gsub('%s+', '')
+---@return string
+function DesktopMaker:write(dir, name)
+	-- Remove trailing '/'
+	dir = (PATHS[dir] or dir):gsub("%/+$", "")
+	-- Replace whitespace in filename with '-'
+	name = (name or self["Name"]):gsub("%s+", "-")
+	-- append name to the directory to get a valid filepath
+	local path = dir .. "/" .. name .. ".desktop"
+	-- Open File
+	local file <close>, err = io.open(path, "w+")
+	if not file then
+		error(("Unable to open file %s\n[ERROR]: %s"):format(path, err))
+	end
+	file:write(self:format())
+	file:close()
+	return path
+end
+
 function DesktopMaker:format()
 	local fmtstr = { "[Desktop Entry]" }
 	for _, kname in ipairs(keys) do
